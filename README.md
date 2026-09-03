@@ -40,35 +40,3 @@ print("sudo ufw allow 22")
 print("sudo ufw status: Firewall filtering working!")
 
 # 
-
-### What I Understood / My Learning
-
-After completing this task, I clearly understood how a firewall works:
-
-1.  **Firewall is a Security Guard:** It checks every packet of data. It allows good traffic and blocks bad traffic based on rules.
-
-2.  **Port-Based Filtering:** The main concept I learned is that firewalls filter based on Port numbers.
-    - **Port 23 (Telnet)** is old and sends passwords without encryption. Hackers can easily sniff it, so we must **BLOCK** it.
-    - **Port 22 (SSH)** is encrypted and secure, so we **ALLOW** it.
-
-3.  **Why Online Port Checkers Failed:** I first tried sites like hackertarget and yougetsignal, but got "error getting results". I learned that mobile data (Jio/Airtel) uses CGNAT and IPv6. So the public IP is shared and the scanner can't reach my device. The correct way is to test locally with `telnet localhost 23` or `ufw status`.
-
-4.  **UFW Makes it Simple:** In Linux, `iptables` is complex. `UFW (Uncomplicated Firewall)` makes it simple with commands like `sudo ufw deny 23`. In Windows, `wf.msc` does the same job.
-
-5.  **Default Deny is Best Practice:** Blocking all unknown ports by default keeps the system safe. In my Python code, port 3389 (RDP) was automatically blocked by Default Deny policy.
-
-### Implementation (Done on Mobile)
-
-Since I was on mobile, I simulated firewall logic in Python and Bash.
-
-**1. Python (`firewall_simulation.py`)**
-```python
-firewall_rules = {
-    23: "BLOCK (Telnet - Insecure)",
-    22: "ALLOW (SSH - Secure)",
-    80: "ALLOW (HTTP)",
-    443: "ALLOW (HTTPS)"
-}
-def check_packet(port):
-    rule = firewall_rules.get(port, "BLOCK (Default Deny)")
-    return f"Port {port} -> {rule} -> {'PASSED' if 'ALLOW' in rule else 'DROPPED (Blocked)'}"
