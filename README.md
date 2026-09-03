@@ -33,7 +33,7 @@ def check_packet(port):
 print("--- Firewall Status: ACTIVE ---")
 for p in [23, 22, 80, 443, 3389]:
     print(check_packet(p))
-
+```
 print("\nUFW Commands Simulated:")
 print("sudo ufw deny 23")
 print("sudo ufw allow 22")
@@ -48,10 +48,36 @@ sudo ufw allow 22/tcp
 sudo ufw status numbered
 sudo ufw delete deny 23
 
-code Output
+```code Output
 --- Firewall Status: ACTIVE ---
 Port 23 -> BLOCK (Telnet - Insecure) -> Packet DROPPED (Blocked)
 Port 22 -> ALLOW (SSH - Secure) -> Packet PASSED
 Port 80 -> ALLOW (HTTP) -> Packet PASSED
 Port 443 -> ALLOW (HTTPS) -> Packet PASSED
 Port 3389 -> BLOCK (Default Deny) -> Packet DROPPED (Blocked)
+```
+
+Firewall Setup and Configuration
+
+## 🔥 What is Firewall? - Definition
+
+**Firewall** is a network security device or software that monitors and controls incoming and outgoing network traffic based on predetermined security rules. It acts as a barrier between a trusted internal network and untrusted external network (like the Internet).
+
+Think of it as a **Security Guard at the main gate** of your house. The guard checks every person (packet) - if the person is in the allow-list, he lets him in. If the person is in the block-list, he stops him.
+
+**Key Functions:**
+1.  Packet Filtering - Checks IP, Port, Protocol
+2.  Blocks unauthorized access
+3.  Prevents hacking, viruses, and malware
+4.  Logs all traffic for monitoring
+
+**Types:**
+- Hardware Firewall (Router lo untundi)
+- Software Firewall (Windows Firewall, UFW in Linux)
+- Stateful Firewall (Connection gurtunchukuntundi)
+- Stateless Firewall (Prathi packet ni separate ga chustundi)
+
+**Example Rule:** `BLOCK Port 23 (Telnet)` - because Telnet is insecure. `ALLOW Port 22 (SSH)` - because SSH is secure.
+
+
+...
