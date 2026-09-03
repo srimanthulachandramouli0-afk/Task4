@@ -40,3 +40,18 @@ print("sudo ufw allow 22")
 print("sudo ufw status: Firewall filtering working!")
 
 # 
+#code furewall_sim.sh
+sudo ufw status verbose
+sudo ufw enable
+sudo ufw deny 23/tcp
+sudo ufw allow 22/tcp
+sudo ufw status numbered
+sudo ufw delete deny 23
+
+code Output
+--- Firewall Status: ACTIVE ---
+Port 23 -> BLOCK (Telnet - Insecure) -> Packet DROPPED (Blocked)
+Port 22 -> ALLOW (SSH - Secure) -> Packet PASSED
+Port 80 -> ALLOW (HTTP) -> Packet PASSED
+Port 443 -> ALLOW (HTTPS) -> Packet PASSED
+Port 3389 -> BLOCK (Default Deny) -> Packet DROPPED (Blocked)
